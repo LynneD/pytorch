@@ -4,6 +4,7 @@
 """
 
 load("@bazel_skylib//lib:selects.bzl", "selects")
+load("@rules_cc//cc:defs.bzl", "cc_library")
 
 def if_cuda(if_true, if_false = []):
     """Helper for selecting based on the whether CUDA is configured. """
@@ -128,4 +129,10 @@ Args:
     },
     # output_to_genfiles is required for header files.
     output_to_genfiles = True,
+)
+
+rules = struct(
+    cc_library = cc_library,
+    cmake_configure_file = cmake_configure_file,
+    select = select,
 )
